@@ -31,6 +31,12 @@ type updateUserResponse {
     user: User
 }
 
+type deleteUserResponse {
+    status: String!
+    code: Int!
+    message: String!    
+}
+
 type Query {
     users: [User]
     userById(id: ID!): User!
@@ -41,23 +47,7 @@ type Mutation {
 
     updateUser(id: ID!, user:UserInput): updateUserResponse!
 
-    deletaUser(id: ID!): deletaUserResposta!
-}
-
-interface respostaCustom {
-    code: Int!
-    mensagem: String!
-}
-
-type deletaUserResposta implements respostaCustom {
-    code: Int!
-    mensagem: String!
-}
-
-type atualizaUserResposta implements respostaCustom {
-    code: Int!
-    mensagem: String!
-    user: User!
+    deleteUser(id: ID!): deleteUserResponse!
 }
 
 `

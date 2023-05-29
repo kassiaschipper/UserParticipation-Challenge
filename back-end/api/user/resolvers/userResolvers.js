@@ -1,12 +1,7 @@
 const { GraphQLScalarType } = require('graphql'); 
 
 const userResolvers = {
-    respostaCustom :{
-        __resolveType(obj, context, info) {
-            return false
-          },
-    },
-
+  
     DateTime: new GraphQLScalarType({
         name: "DateTime",
         description: "String de data e hora no formato ISO-8601",
@@ -33,7 +28,10 @@ const userResolvers = {
             return await dataSources.usersAPI.updateUser(id, user)
         },
 
-    
+        deleteUser:  async (root, { id }, { dataSources } ) => {
+            return await dataSources.usersAPI.deleteUser(id)
+        },
+
     }
 };
 

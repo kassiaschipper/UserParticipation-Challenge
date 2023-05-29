@@ -11,20 +11,26 @@ class UserAPI extends MongoDataSource {
   constructor() {
     super(User);
     this.collection = "users";
-    this.respostaCustom = {
-      code: 200,
-      mensagem: "Operação efetuada com sucesso",
-    };
-  }
+   }
 
   async getUsers() {
-    const users = await User.find();
-    return users;
+   try {
+      const users = await User.find(); 
+      return users;
+   } catch (error) {
+      return error;
+   }
+       
   }
 
   async getUserById(id) {
+   try {
     const user = await User.findById(id);
     return user;
+   } catch (error) {
+      return error;
+   }
+    
   }
 
   async addUser(user) {
@@ -34,7 +40,7 @@ class UserAPI extends MongoDataSource {
       user.lastName === undefined ||
       user.participation === undefined
     ) {
-      const response = badRequest("Você deve preencher todos os campos");
+      const response = badRequest('Você deve preencher todos os campos');
       return { ...response };
     }
 
@@ -53,8 +59,8 @@ class UserAPI extends MongoDataSource {
         user: userCreated,
       };
     } catch (error) {
-      console.log("Erro ao adicionar usuário", error);
-      throw error;
+      const response = badRequest('Erro na requisisção, verifique os dados.');
+      return {...response};
     }
   }
 
@@ -68,18 +74,39 @@ class UserAPI extends MongoDataSource {
       const user = await User.findById(id);
 
       if (!user) {
-        const response = notFound("Usuário não encontrado");
+        const response = notFound('Usuário não encontrado');
         return { ...response };
       }
 
       await User.updateOne({ _id: id }, newData);
 
-      const response = success("Usuário atualizado com sucesso");
+      const response = success('Usuário atualizado com sucesso');
 
       return { ...response };
     } catch (error) {
-      throw error;
+      const response = badRequest('Erro na requisisção, verifique os dados.');
+      return {...response};
     }
+  }
+
+  async deleteUser(id) {
+   try {
+      const user = await User.findById(id);
+   
+      if (!user) {
+        const response = notFound('Usuário não encontrado');
+        return { ...response };
+      }
+
+      await User.deleteOne({ _id:id });
+
+      const response = success('Usuário deletado com sucesso');
+
+      return {...response}
+   } catch (error) {
+      const response = badRequest('Erro na requisisção, verifique os dados.');
+      return {...response};
+   }
   }
 }
 
