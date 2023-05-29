@@ -17,12 +17,19 @@ input UserInput {
     createdAt: DateTime
 }
 
- type addUserResponse{
+ type addUserResponse {
     status: String!
     code: Int!
     message: String!
     user: User
-  }
+}
+
+type updateUserResponse {
+    status: String!
+    code: Int!
+    message: String!
+    user: User
+}
 
 type Query {
     users: [User]
@@ -32,7 +39,7 @@ type Query {
 type Mutation {
     addUser(user: UserInput): addUserResponse!
 
-    atualizaUser(id: ID!, user:UserInput): atualizaUserResposta!
+    updateUser(id: ID!, user:UserInput): updateUserResponse!
 
     deletaUser(id: ID!): deletaUserResposta!
 }

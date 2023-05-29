@@ -27,7 +27,12 @@ const userResolvers = {
     Mutation: {
         addUser: async (root, { user }, { dataSources} ) => {
             return await dataSources.usersAPI.addUser(user)
-        } 
+        }, 
+
+        updateUser: async (root, {id, user}, { dataSources } ) => {
+            return await dataSources.usersAPI.updateUser(id, user)
+        },
+
     
     }
 };
