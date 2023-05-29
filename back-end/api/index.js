@@ -13,9 +13,13 @@ const resolvers = [userResolvers];
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers, 
+    dataSources: () => {
+        return {
+            usersAPI: new UserAPI()
+        }
+    }
 });
-console.log(process.env.PORT)
 
 mongoose
     .connect(MONGO_URI, {
