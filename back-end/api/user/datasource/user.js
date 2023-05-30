@@ -3,7 +3,6 @@ const {
   success,
   notFound,
   created,
-  internalServerError,
   badRequest,
 } = require("../../utils/queryStatus");
 const User = require("../../models/User");
@@ -35,9 +34,9 @@ class UserAPI extends MongoDataSource {
 
   async addUser(user) {
     //TODO verificar dado duplicado antes de inserir
-    if (
-      user.name === undefined ||
-      user.lastName === undefined ||
+     if (
+      !user.name ||
+      !user.lastName ||
       user.participation === undefined
     ) {
       const response = badRequest('Você deve preencher todos os campos');
@@ -55,9 +54,9 @@ class UserAPI extends MongoDataSource {
       const response = created(`Usuário ${newUser.name} inserido com sucesso`);
 
       return {
-        ...response,
-        user: userCreated,
+        ...response
       };
+      
     } catch (error) {
       const response = badRequest('Erro na requisisção, verifique os dados.');
       return {...response};

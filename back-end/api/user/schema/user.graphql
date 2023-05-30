@@ -21,7 +21,6 @@ input UserInput {
     status: String!
     code: Int!
     message: String!
-    user: User
 }
 
 type updateUserResponse {
