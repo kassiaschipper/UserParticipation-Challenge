@@ -1,1 +1,1 @@
-web: node index.js
+web: nodemon -e js,json,graphql ./api/index.js
