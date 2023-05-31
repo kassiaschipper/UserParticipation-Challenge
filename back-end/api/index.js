@@ -15,11 +15,10 @@ const typeDefs = [userSchema];
 const resolvers = [userResolvers];
 
 const app = express();
-
 app.use(bodyParser.json())
 
 const corsOptions = {
-    origin: "*", 
+    origin: "https://user-participation-challenge.vercel.app", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Authorization",
     credentials: true,
