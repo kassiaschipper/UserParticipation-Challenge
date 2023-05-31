@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 
 async function startServer() {
   await server.start();
-  server.applyMiddleware({ app, path: "/api" });
+  server.applyMiddleware({ app, path: "/api/graphql" });
 
   mongoose
     .connect(MONGO_URI, {
