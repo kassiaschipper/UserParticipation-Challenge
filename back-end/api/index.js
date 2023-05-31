@@ -18,7 +18,7 @@ const app = express();
 app.use(bodyParser.json())
 
 const corsOptions = {
-    origin: "https://user-participation-challenge.vercel.app", 
+    origin: "https://user-participation-challenge.vercel.app/", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Authorization",
     credentials: true,
@@ -38,7 +38,7 @@ const server = new ApolloServer({
 });
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://user-participation-challenge.vercel.app");
+    res.setHeader("Access-Control-Allow-Origin", "https://user-participation-challenge.vercel.app/");
     next();
 });
 
