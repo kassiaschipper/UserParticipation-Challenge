@@ -4,7 +4,6 @@ const userSchema = require("./user/schema/user.graphql");
 const userResolvers = require("./user/resolvers/userResolvers");
 const UserAPI = require('./user/datasource/user')
 const dotenv = require('dotenv');
-
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -12,6 +11,10 @@ const typeDefs = [userSchema];
 const resolvers = [userResolvers];
 
 const server = new ApolloServer({
+    cors: {
+        origin: "https://user-participation-challenge.vercel.app/",
+        credentials: true 
+    },
     typeDefs,
     resolvers, 
     dataSources: () => {
