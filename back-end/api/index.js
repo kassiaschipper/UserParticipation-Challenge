@@ -21,8 +21,8 @@ const resolvers = [userResolvers];
 const app = express();
 
 const corsOptions = {
-    origin: "https://user-participation-challenge.vercel.app", // Altere para o domínio do seu frontend hospedado no Vercel
-    optionsSuccessStatus: 200, // Retornar o código de status 200 para solicitações com sucesso
+    origin: "https://user-participation-challenge.vercel.app", 
+    optionsSuccessStatus: 200, 
   };
 
 app.use(cors(corsOptions));
@@ -39,8 +39,8 @@ const server = new ApolloServer({
 
 async function startServer() {
   await server.start();
-  app.use("/", bodyParser.json(), expressMiddleware(server));
-  //server.applyMiddleware({ app, path: "/" });
+  //app.use("/", bodyParser.json(), expressMiddleware(server));
+  server.applyMiddleware({ app, path: "/" });
 
   mongoose
     .connect(MONGO_URI, {
