@@ -22,6 +22,9 @@ const app = express();
 
 const corsOptions = {
     origin: "https://user-participation-challenge.vercel.app", 
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Authorization",
+    credentials: true,
     optionsSuccessStatus: 200, 
   };
 
