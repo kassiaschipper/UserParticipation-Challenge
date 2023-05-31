@@ -25,7 +25,6 @@
     "graphql": "^16.6.0",
     "graphql-tools": "^9.0.0",
     "mongodb": "^5.5.0",
-    "mongoose": "^7.2.1",
-   
+    "mongoose": "^7.2.1"   
   } 
 }
