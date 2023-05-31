@@ -1,8 +1,4 @@
 const { ApolloServer } = require("apollo-server-express");
-const { expressMiddleware } = require("@apollo/server/express4");
-const {
-    ApolloServerPluginDrainHttpServer,
-  } = require("@apollo/server/plugin/drainHttpServer");
 const mongoose = require("mongoose");
 const userSchema = require("./user/schema/user.graphql");
 const userResolvers = require("./user/resolvers/userResolvers");
@@ -32,7 +28,6 @@ app.use(cors(corsOptions));
 const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
-  cors:true,
   typeDefs,
   resolvers,
   dataSources: () => ({
@@ -43,7 +38,6 @@ const server = new ApolloServer({
 
 async function startServer() {
   await server.start();
-  //app.use("/", bodyParser.json(), expressMiddleware(server));
   server.applyMiddleware({ app, path: "/" });
 
   mongoose
