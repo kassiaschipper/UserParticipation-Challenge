@@ -1,9 +1,15 @@
 const { ApolloServer } = require("apollo-server-express");
+const { expressMiddleware } = require("@apollo/server/express4");
+const {
+    ApolloServerPluginDrainHttpServer,
+  } = require("@apollo/server/plugin/drainHttpServer");
 const mongoose = require("mongoose");
 const userSchema = require("./user/schema/user.graphql");
 const userResolvers = require("./user/resolvers/userResolvers");
 const UserAPI = require("./user/datasource/user");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const express = require("express");
 const http = require("http");
 dotenv.config();
@@ -14,6 +20,13 @@ const resolvers = [userResolvers];
 
 const app = express();
 
+const corsOptions = {
+    origin: "https://user-participation-challenge.vercel.app", // Altere para o domínio do seu frontend hospedado no Vercel
+    optionsSuccessStatus: 200, // Retornar o código de status 200 para solicitações com sucesso
+  };
+
+app.use(cors(corsOptions));
+const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
   typeDefs,
@@ -26,7 +39,8 @@ const server = new ApolloServer({
 
 async function startServer() {
   await server.start();
-  server.applyMiddleware({ app, path: "/" });
+  app.use("/", bodyParser.json(), expressMiddleware(server));
+  //server.applyMiddleware({ app, path: "/" });
 
   mongoose
     .connect(MONGO_URI, {
@@ -35,7 +49,8 @@ async function startServer() {
     })
     .then(() => {
       console.log(`MongoDB connected`);
-      app.listen({ port: process.env.PORT || 5001 }, () => {
+      httpServer.listen({ port: process.env.PORT || 5001 }, () => {
+      //app.listen({ port: process.env.PORT || 5001 }, () => {
         console.log(`Server listening at ${process.env.PORT}`);
       });
     })
