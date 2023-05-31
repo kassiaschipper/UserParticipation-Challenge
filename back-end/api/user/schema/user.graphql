@@ -4,6 +4,7 @@ const userSchema = gql `
 scalar DateTime
 
 type User { 
+    id:ID!
     name: String!
     lastName: String!
     participation: Int!

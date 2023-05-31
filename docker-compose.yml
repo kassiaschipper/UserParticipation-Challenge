@@ -1,0 +1,44 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - 1234:27017
+    env_file:
+      - ./back-end/.env
+    volumes:
+      - mongo-volume:/data/db
+
+  node:
+    container_name: node
+    restart: always
+    build: ./back-end
+    ports:
+      - 5000:5001
+    depends_on:
+      - mongo
+    env_file:
+      - ./back-end/.env
+
+  react:
+    container_name: react
+    build: ./front-end
+    volumes:
+      - react-volume:/var/www/html
+
+  nginx: 
+    container_name: nginx_app
+    build: ./nginx
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - react-volume:/var/www/html
+    depends_on:
+      - mongo
+      - node
+      - react
+volumes:
+  mongo-volume:
+  react-volume:

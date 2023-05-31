@@ -2,10 +2,11 @@
   "name": "back-end",
   "version": "1.0.0",
   "type": "commonjs",
-   "description": "",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"No build step required for the back-end\"",
+    "test": "jest",
     "start": "nodemon -e js,json,graphql ./api/index.js"
   },
   "keywords": [],
@@ -14,7 +15,10 @@
   "engines": {
     "node": "16.x"
   },
-  "devDependencies": { "nodemon": "^2.0.22"},
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22"
+  },
   "dependencies": {
     "@apollo/server": "^4.7.1",
     "apollo-datasource-mongodb": "^0.5.4",
@@ -27,6 +31,6 @@
     "graphql": "^16.6.0",
     "graphql-tools": "^9.0.0",
     "mongodb": "^5.5.0",
-    "mongoose": "^7.2.1"   
-  } 
+    "mongoose": "^7.2.1"
+  }
 }

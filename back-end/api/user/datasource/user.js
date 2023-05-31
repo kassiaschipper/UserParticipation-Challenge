@@ -103,7 +103,7 @@ class UserAPI extends MongoDataSource {
 
       return {...response}
    } catch (error) {
-      const response = badRequest('Erro na requisisção, verifique os dados.');
+      const response = badRequest('Erro na requisição, verifique os dados.');
       return {...response};
    }
   }

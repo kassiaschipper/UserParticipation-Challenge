@@ -52,7 +52,7 @@ export default function ParticipationChart () {
 }
 
 const ChartWrapper = styled.div`
-margin-right: 1rem;
+margin-right: 8rem;
 margin-top: 20px;
 height: 60vh;
 width: 40vw;
