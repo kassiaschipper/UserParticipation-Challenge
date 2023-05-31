@@ -32,6 +32,7 @@ app.use(cors(corsOptions));
 const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
+  cors:true,
   typeDefs,
   resolvers,
   dataSources: () => ({
