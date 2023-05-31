@@ -53,8 +53,8 @@ async function startServer() {
     })
     .then(() => {
       console.log(`MongoDB connected`);
-      httpServer.listen({ port: process.env.PORT || 5001 }, () => {
-      //app.listen({ port: process.env.PORT || 5001 }, () => {
+      //httpServer.listen({ port: process.env.PORT || 5001 }, () => {
+      app.listen({ port: process.env.PORT || 5001 }, () => {
         console.log(`Server listening at ${process.env.PORT}`);
       });
     })
