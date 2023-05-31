@@ -16,6 +16,8 @@ const resolvers = [userResolvers];
 
 const app = express();
 
+app.use(bodyParser.json())
+
 const corsOptions = {
     origin: "https://user-participation-challenge.vercel.app", 
     methods: "GET,POST,PUT,DELETE",
@@ -34,6 +36,11 @@ const server = new ApolloServer({
     usersAPI: new UserAPI(),
   }),
   introspection: true,
+});
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://user-participation-challenge.vercel.app");
+    next();
 });
 
 async function startServer() {
