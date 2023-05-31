@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://user-participation-challenge.vercel.app/");
     next();
 });
-
+app.options("/api/graphql", cors(corsOptions));
 async function startServer() {
   await server.start();
   server.applyMiddleware({ app, path: "/api/graphql" });
