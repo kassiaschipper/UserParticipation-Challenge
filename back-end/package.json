@@ -2,6 +2,7 @@
   "name": "back-end",
   "version": "1.0.0",
   "type": "commonjs",
+  "proxy": "https://user-participation.herokuapp.com/",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,5 +26,5 @@
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.1",
     "nodemon": "^2.0.22"
-  }
+  } 
 }
