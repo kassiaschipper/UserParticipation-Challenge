@@ -32,7 +32,7 @@ Este projeto tem como objetivo possibilitar a inserção de usuários e seus res
 
 # Para rodar a aplicação
 1. Deve clonar esse arquivo para seu computador
-2. É necessario ter o docker em seu computador
-3. Configue o seu .env conforme o .env.exemple
-4. Abrir o terminal na pasta raiz e executar o seguinte comando sudo docker compose up -d
-5. Quando estiver pronto acessar http://localhost:80/
+2. Instalar as dependencias nas pastas de front-end e back-end utilizando npm i 
+3. Configurar o seu .env conforme o .env.exemple
+4. Na pasta de back-end, rodar npm start para iniciar o servidor
+6. Acessar o link https://user-participation-challenge.vercel.app/ e testar
